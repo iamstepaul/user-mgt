@@ -3,7 +3,8 @@ require('dotenv').config()
 const express = require('express')
 const expressLayouts = require('express-ejs-layouts')
 const connectDB = require('./server/config/db')
-const flash = require('connect-flash');
+const flash = require('connect-flash')
+const methodOveride = require('method-override')
 
 const session = require('express-session')
 
@@ -15,6 +16,10 @@ connectDB()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+
+// method overide middlewares
+app.use(methodOveride('_method'))
+
 
 // Express Session
 app.use(
